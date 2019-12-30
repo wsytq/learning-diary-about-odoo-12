@@ -1,0 +1,21 @@
+py文件注意点：
+  字段类型（用到的）:
+    char(字符串),float(浮点数),selection(多选框),bool(布尔型),datatime(时间精确到ms),date(日期精确到天),
+    interger(整型),many2one(关联子表),one2many(关联主表),many2many(两表平级)
+  字段属性:
+    compute=方法名:属性为计算字段,直接实时运行,不存数据库;若想存数据库,应使用store=True,同时应添加装饰器@api.depands('依赖字段');
+                  不存数据库时xml的search无法进行搜索,需要添加search=方法名,可以被搜索;
+                  注:(depands方法使用时注意,上次存储的数据有时候会拿不到,当依赖字段改变时会触发depands下方法)
+    default=方法名:设置默认值方法
+    comdel_name=表名:关联的的表名
+    inverse_name=字段名:关联的主表字段名,用于one2many/many2many
+    ondelete:级联删除
+    string:字段默认显示名
+    help:字段解释文字
+    copy:复制时该字段的值是否复制
+    digits:浮点数精确
+    require:必填字段
+    track_visibility:字段追踪,记录字段变化时的信息,包括引起改变的人,改变前的值和改变后的值,改变的时间
+  模型介绍:
+    继承模型类型:Model(数据库表),AbstractModel(抽象表,不存数据库,类似工厂模型),TransientModel(临时表,存数据库但是数据过一段时间会被清理)
+    
